@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Java EE 5.0 Example</title>
+    </head>
+
+    <body>
+      <div class="titlepage">
+        Les EJB c'est vraiment pas fun, par pitié j'ai l'impression d'être en 1990.
+      </div>
+        <table width="100%" cellpadding="0" border="0">
+          <tr>
+            <td>
+              <form action="/banque-web/init" method="get">
+                <div><input type="submit" value="Create exemple accounts" /></div>
+              </form>
+            </td>
+            <td>
+              <form action="/banque-web/init" method="get">
+                <div><input type="hidden" name="scope" value="delete" /></div>
+                <div><input type="submit" value="Delete exemple accounts" /></div>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <form action="/banque-web/banque/accounts" method="get">
+                <div><input type="submit" value="View accounts" /></div>
+              </form>
+            </td>
+            <td>
+              <form action="/banque-web/banque/transactions" method="get">
+                <div><input type="submit" value="View transactions" /></div>
+              </form>
+            </td>
+          </tr>
+        </table>
+    </body>
+</html>
