@@ -31,21 +31,34 @@ public class InitializerBean implements Initializer {
         Collection<Account> previousAccounts = localPersist.listAllAccounts();
         Collection<Transaction> previousTransactions = localPersist.listAllTransactions();
         if (previousAccounts.isEmpty() && previousTransactions.isEmpty()) {
-            Account account1 = new Account();
-            Account account2 = new Account();
-            localPersist.addAccount(account1);
-            localPersist.addAccount(account2);
+            Account[] accounts = new Account[100];
+            for(int i = 0; i<100; i++) {
+                accounts[i] = new Account();
+                localPersist.addAccount(accounts[i]);
+            }
 
-            Transaction t1 = new Transaction();
-            t1.setDestination(account1);
-            t1.setBalance(20000);
-            localPersist.addTransaction(t1);
+            for(Account account : accounts){
+                int nbTransaction = (int)(1 + Math.random() * 10);
+                for (int i = 0; i<nbTransaction; i++){
+                    int targetAccount = 0;
+                    do{
+                        targetAccount = (int)(Math.random() * accounts.length);
+                    }while(accounts[targetAccount].getId() == account.getId());
+                    long transactionAmount = (long)(1 + Math.random() * 100000);
 
-            Transaction t2 = new Transaction();
-            t2.setSource(account1);
-            t2.setDestination(account2);
-            t2.setBalance(5000);
-            localPersist.addTransaction(t2);
+                    Transaction transaction = new Transaction();
+                    transaction.setSource(account);
+                    transaction.setDestination(accounts[i]);
+                    transaction.setBalance(transactionAmount);
+
+                    localPersist.addTransaction(transaction);
+                }
+            }
+
+            previousAccounts = localPersist.listAllAccounts();
+            previousTransactions = localPersist.listAllTransactions();
+
+            System.out.println("Initialized "+previousAccounts.size()+" accounts and "+previousTransactions.size()+" transactions.");
         }
     }
 }
