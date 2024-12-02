@@ -2,6 +2,7 @@ package fr.yaon.ejb.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.sql.Date;
 
 @Entity
 public class Transaction implements Serializable {
@@ -9,9 +10,11 @@ public class Transaction implements Serializable {
     private long balance;
     private Account source;
     private Account destination;
+    private Date date;
 
     public Transaction(){
         this.balance = 0;
+        this.date = new Date(new java.util.Date().getTime());
     }
 
     @Id
@@ -50,5 +53,13 @@ public class Transaction implements Serializable {
 
     public void setBalance(long balance) {
         this.balance = balance;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    public Date getDate() {
+        return this.date;
     }
 }

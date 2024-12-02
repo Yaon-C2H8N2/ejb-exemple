@@ -17,6 +17,7 @@ public interface Persist {
     long getBalance(Account account);
 
     Collection<Transaction> listAllTransactions();
+    Collection<Transaction> listLastTransactions(int limit);
     Collection<Transaction> findTransactions(Account account);
     Transaction getTransaction(long id);
 }

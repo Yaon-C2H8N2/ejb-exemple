@@ -79,6 +79,12 @@ public class PersistBean implements LocalPersist, RemotePersist {
     }
 
     @Override
+    public Collection<Transaction> listLastTransactions(int limit) {
+        Query query = entityManager.createQuery("SELECT t FROM Transaction t ORDER BY t.date");
+        return query.setMaxResults(limit).getResultList();
+    }
+
+    @Override
     public Collection<Transaction> findTransactions(Account account) {
         Query query = entityManager.createQuery("SELECT t FROM Transaction t WHERE t.source = :account OR t.destination = :account");
         query.setParameter("account", account);
